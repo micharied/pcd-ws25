@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UI Freeze Demo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    #counter {
+      font-size: 2rem;
+      margin: 20px 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Freeze</h1>
+
+  <div id="counter">0</div>
+
+  <button id="freeze">Run Freezing Loop</button>
+  <button id="yield">Run Yielding Loop</button>
+
+  <script>
+    const counter = document.getElementById('counter');
+
+    document.getElementById('freeze').onclick = () => {
+      for (let i = 0; i < 1e7; i++) {
+        counter.textContent = i;
+      }
+    };
+
+    document.getElementById('yield').onclick = () => {
+      let i = 0;
+      function step() {
+        counter.textContent = i;
+        i++;
+        if (i < 1e7) {
+            if (i % 1000000 === 0) {
+                setTimeout(step, 0);
+            } else {
+                step()
+            }
+        }
+      }
+      step();
+    };
+  </script>
+</body>
+</html>
