@@ -14,6 +14,8 @@
             nodejs_24
             vips
             pkg-config
+            python3
+            python313Packages.distutils
           ];
         };
       };
