@@ -22,7 +22,7 @@ func filter(prime int, input <-chan int, output chan<- int) {
 }
 
 func main() {
-	n := 100
+	n := 1000000
 
 	start := time.Now()
 
